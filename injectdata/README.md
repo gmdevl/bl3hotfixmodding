@@ -26,7 +26,9 @@ My BL3 Mod Workspace
   team, which makes them as likely to attach each other as they are you.
   Relatively untested, so let me know if this causes anything game-breaking.
   I have noticed that some NPCs end up getting classified as enemies because
-  of this, though they don't become hostile.
+  of this, though they don't become hostile.  Sometimes enemies get weirdly
+  non-aggressive in general, like some Belliks in Obsidian Forest.  Amusingly,
+  DLC3 riders can start attacking their own mounts!
 
 ## Cheat Type Mods
 
@@ -179,7 +181,8 @@ Gameplay Changes instead.)
   main menu.  No idea why that's required, but I have yet to find a workaround.
 - `torgue_ar_full_auto.txt` - Makes (nearly) all Torgue ARs full-auto.  The
   exceptions are the handful of legendary ARs which have inherent burst-fire
-  mechanics.  (Only the Alchemist needed tweaking, of the legendaries.)
+  mechanics.  (Only the Alchemist and Contained Blast needed tweaking, of the
+  legendaries.)
 - `alternate_scaling_*.txt` - Sets the main "universal" scaling constant to
   match either BL1, BL2, or TPS (depending on which one you choose).  BL3's
   default is `1.09`.  BL1's is maybe `1.045` (BL1 doesn't have a single scaling
@@ -262,6 +265,9 @@ being used, which gives you far more Eridium than usual.
   this mod would be a bit pointless.  Not sure if being legendary has an
   effect on item stats; it's possible that this mod buffs up some items
   here.
+- `silent_sellout.txt` - Removes the Tyreen-themed voice module from the
+  Sellout.  I realize that's sort of the *point* of the gun, but it's a
+  nice gun on its own, and the voice module got to annoy me.
 
 ## Partlocks / Part Changes
 
@@ -287,7 +293,8 @@ being used, which gives you far more Eridium than usual.
   - DLC2 (Guns, Love, and Tentacles)
   - DLC3 (Bounty of Blood)
 - `all_weapons_can_anoint.txt` - A number of weapons in the game can't
-  ordinarily spawn with Anointments; this makes it so that they can.
+  ordinarily spawn with Anointments; this makes it so that they can.  (Excludes
+  The Shoddy)
 - `more_tracker_darts.txt` - I enjoy Atlas weapons, but I've found I basically
   never use them unless they've got the tracker darts part (as opposed to
   pucks or grenades).  So, I increased the weight of the tracker dart part,
@@ -428,8 +435,9 @@ put together a mod to do that, though, 'cause it hardly seems worth it.
   Ordinarily Bloody Harvest and Broken Hearts wouldn't show up in DLC2,
   but they will with this.  This doesn't enable them *globally* --
   Covenant Pass and Droughts won't have any -- but they'll all be active
-  in as big an area as possible (so far).  Doesn't do anything unless
-  an event or my `all_event_spawns` mod is active.
+  in as big an area as possible (so far).  These *have* been updated to
+  include DLC3 spawners, though that's not super well-tested.  Doesn't
+  do anything unless an event or my `all_event_spawns` mod is active.
 
 ## Main Menu
 

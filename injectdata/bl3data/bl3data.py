@@ -205,14 +205,14 @@ class BL3Data(object):
             if not os.path.exists(json_file):
                 # PyPy3 is still on 3.6, which doesn't have capture_output
                 #subprocess.run([self.config['filesystem']['ueserialize_path'], base_path], encoding='utf-8', capture_output=True)
-                subprocess.run([self.config['filesystem']['ueserialize_path'], base_path], encoding='utf-8', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                subprocess.run([self.config['filesystem']['ueserialize_path'], 'serialize', base_path], encoding='utf-8', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             if os.path.exists(json_file):
                 with open(json_file) as df:
                     self.cache[obj_name] = json.load(df)
                 if len(self.cache[obj_name]) > 0:
                     if '_apoc_data_ver' not in self.cache[obj_name][0] or self.cache[obj_name][0]['_apoc_data_ver'] < BL3Data.data_version:
                         # Regenerate if we have an old serialization
-                        subprocess.run([self.config['filesystem']['ueserialize_path'], base_path], encoding='utf-8', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                        subprocess.run([self.config['filesystem']['ueserialize_path'], 'serialize', base_path], encoding='utf-8', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                         with open(json_file) as df:
                             self.cache[obj_name] = json.load(df)
             else:
@@ -406,7 +406,14 @@ class BL3Data(object):
 
         # AI
         if bvc_obj.ai and bvc_obj.ai != 'None':
-            raise Exception('ai: {}'.format(data['BaseValueAttribute']))
+            # Basically just gonna hardcode these things for now
+            if bvc_obj.ai == '/Game/GameData/Balance/WeightingPlayerCount/Enemy_MajorUpgrade_PerPlayer':
+                # This uses EAttributeInitializerUsageMode::Scale, and depends on both
+                # player count and game mode (NVHM/TVHM).  This code's going to assume
+                # 1-player NVHM, which is 1, so no actual changes.
+                print('WARNING: Assuming 1-player NVHM while processing Enemy_MajorUpgrade_PerPlayer')
+            else:
+                raise Exception('Unknown AI: {}'.format(bvc_obj.ai))
 
         # BVS
         return bvc * bvc_obj.bvs

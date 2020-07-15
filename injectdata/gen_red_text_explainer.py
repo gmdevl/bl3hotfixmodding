@@ -1229,7 +1229,6 @@ for (gear_name, obj_name, redtext, explanation) in [
             '/Game/PatchDLC/Hibiscus/Gear/Weapon/_Unique/LoveDrill/UIStat_RedText_LoveDrill',
             "To have and to hold...",
             "20% chance to deal double damage as shock"),
-        # TODO: doesn't actually show up?  Should apply to both legendary and non-legendary versions
         ("Short Stick",
             '/Game/PatchDLC/Steam/Gear/Weapons/SteamGun/UIStat_RedText_ShortStick',
             "A small price to pay.",
@@ -1428,15 +1427,14 @@ for (gear_name, obj_name, redtext, explanation) in [
             "extremely fast longbow which explodes into ricocheting projectiles"),
 
         # DLC3 (Bounty of Blood)
-        # TODO: Fill this out, and verify the ones I've just put in blindly.
         ("The Beast (rad)",
             '/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/BioBetsy/UIStat_RedText_BioBetsy_Rad',
             "She grew big, and she grew mean.",
-            "unknown"),
+            "no special effects"),
         ("The Beast (shock)",
             '/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/BioBetsy/UIStat_RedText_BioBetsy_Shock',
             "She grew big, and she grew mean.",
-            "unknown"),
+            "no special effects"),
         ("Contained Blast",
             '/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/ContainedExplosion/UIStat_RedText_Contained',
             "Put a lid on it.",
@@ -1444,7 +1442,7 @@ for (gear_name, obj_name, redtext, explanation) in [
         ("Icebreaker",
             '/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/CoolBeans/UIStat_RedText_CoolBeans',
             "Dread fifty below more than fifty above.",
-            "unknown"),
+            "cryothrower"),
         ("Dowsing Rod",
             '/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/DowsingRod/UIStat_RedText_Dowsing',
             "It's down there somewhere, lemme take another look.",
@@ -1489,7 +1487,7 @@ for (gear_name, obj_name, redtext, explanation) in [
         ("Peashooter",
             '/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Peashooter/UIStat_RedText_Peashooter',
             "If you think there's no risk, take a good dose.",
-            "hits (maybe just crits) generate MIRV-like ricochets"),
+            "crits generate MIRV-like ricochets"),
         ("The Blanc",
             '/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/PrivateInvestigator/UIStat_RedText_PrivateInvestigator',
             "This machine unerringly arrives at the truth.",
@@ -1523,11 +1521,11 @@ for (gear_name, obj_name, redtext, explanation) in [
         ("Dakota",
             '/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Dakota/UIStat_RedText_Dakota',
             "The longarm of the law.",
-            "unknown"),
+            "randomly fires shock, incendiary, or non-elemental pellets"),
         ("The Shoddy",
             '/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Fakobs/UIStat_RedText_Fakobs',
             "100% Genuine Fakobs.",
-            "does no actual damage"),
+            "projectiles fall very close to player"),
         ("Frequency",
             '/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Frequency/UIStat_RedText_Frequency',
             "Hertz so good.",
@@ -1543,7 +1541,8 @@ for (gear_name, obj_name, redtext, explanation) in [
         ("Splinter",
             '/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Splinter/UIStat_RedText_Splinter',
             "The first one is always the hardest.",
-            "unknown"),
+            # TODO: Should try to verify this.
+            "crits might ricochet 3x instead of just 1, unsure"),
         ("Proprietary License",
             '/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Copybeast/UIStat_RedText_Copybeast',
             "A little from Column A, a little from Column B.",
@@ -1584,8 +1583,18 @@ for (gear_name, obj_name, redtext, explanation) in [
         else:
             attr_name = 'Text'
 
+        # Another *weird* special-case.  The red text for Short Stick doesn't actually
+        # get updated if we do it at PATCH time.
+        if 'ShortStick' in obj_name:
+            hf_type = Mod.LEVEL
+            hf_package = 'MatchAll'
+        else:
+            hf_type = Mod.PATCH
+            hf_package = ''
+
+        # Now generate the hotfix
         mod.comment(gear_name)
-        mod.reg_hotfix(Mod.PATCH, '',
+        mod.reg_hotfix(hf_type, hf_package,
                 obj_name,
                 attr_name,
                 '[Flavor]{}[/Flavor] ({})'.format(redtext, elementize(explanation)))

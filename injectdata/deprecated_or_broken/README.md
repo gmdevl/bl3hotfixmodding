@@ -7,6 +7,10 @@ weren't actually intended to be mods themselves.
   maps which don't ordinarily spawn them, and we can!  The test as-is is
   a bit broken and needs further development to be viable, but it worked
   well enough that I'm happy leaving it the way it is for now.
+- `all_anointed.txt` - Just a test to turn all enemies (just in Covenant
+   Pass) into Anointed.  Works fine, actually, but I have no plans to
+   expand it beyond there.  There's a commented bit to turn all Covenant
+   Pass enemies into Wotan instead, which is good for a laugh...
 - `gun_randomizer.txt` - The file as-is just randomizes the barrel for
   the Cloud Kill SMG, and works pretty well, giving three random barrels
   to the gun.  No real plans to turn this into a real randomizer, just
@@ -39,6 +43,10 @@ weren't actually intended to be mods themselves.
   SMG kill count, and set the target to one higher than that current stat from
   my save.  No plans to make this into a full mod, but if anyone else is
   interested, this is how you'd do it.
+- `hatsoff_weapon.txt` - Just a joke mod.  During the intro to Bounty of Blood,
+  a character named Old Pete starts making another character dance by shooting
+  at his feet.  This changes his Jakobs gun into the Backburner, instead, for a
+  laugh.
 
 ## Deprecated/Testing Mods
 
@@ -159,4 +167,20 @@ don't look at these thinking that they're any good.  :)
 - `fix_enemy_loot_spawn_patterns.txt` - I wanted to fix the loot drop pattern
   for the Maliwan Slaughter bosses, but started with Mouthpiece instead, since
   he's many orders of magnitude easier to get to.  Anyway, no dice.
+- `gen_faster_npcs.py` - DLC3 added a few NPCs who walk reaaal slowly, and I
+  wanted to see if I could speed them up.  Started with Oletta (intending to
+  test around the Lost and Found mission), but didn't get anywhere -- I think
+  I have the right attribute to go after, but I haven't been able to figure out
+  a correct hotfix syntax, so I don't know if that's right.  Anyway, giving
+  up for now.
+- `get_skill_tree_shenanigans.py` - This is actually partially working; was just
+  playing with shuffling skills around, namely swapping Amara's Root to Rise
+  with One With Nature.  My "preferred" method, which gives the most flexibility
+  (can totally rearrange skill trees) doesn't work well enough to be generally
+  useful -- skills lower than they "should" be won't be selectable ever, and
+  skills higher than they "should" be have incorrect visual notifications.  The
+  second method I tried does work, but would require that you keep the same
+  "structure" as the vanilla tree.  You could swap skills around all you like
+  (while making sure that the max-points and icon vars are moved too) but you
+  wouldn't be able to rearrange the tree at will.
 

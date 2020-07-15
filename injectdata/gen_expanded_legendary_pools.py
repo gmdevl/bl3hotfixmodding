@@ -75,8 +75,9 @@ mod = Mod('expanded_legendary_pools.txt',
 #   Legendary version's better, would be a bit silly to have both.
 #
 # Email-reward version of Short Stick - /Game/PatchDLC/Steam/Gear/Weapons/SteamGun/Balance/Balance_SM_HYP_ShortStick
-#   Doesn't seem to actually work anyway, and would only be purple if it did.  (This is theoretically
-#   what was used for the email reward, though, so they got it to work *somehow* via that.)
+#   The MinGameStage and MaxGameStage for this are both set to 57, so it will refuse to spawn unless
+#   the game's exactly there.  You can add it to pools, etc, but if you're not exactly 57 it just won't
+#   spawn.  Easy enough to fix, but you might as well just use the legendary version anyway.
 #
 # Seventh Sense guns.  There's four total variants, and we're only adding one of them.  The others:
 #   This one is referenced by a mission, presumably only available during that
@@ -88,6 +89,9 @@ mod = Mod('expanded_legendary_pools.txt',
 #   This one doesn't seem to really be referenced by anything at all (or rather, it's in a pool, but
 #   the pool isn't referenced by anything)
 #   '/Game/PatchDLC/Hibiscus/Gear/Weapon/_Unique/SeventhSense/Balance/Balance_PS_JAK_SeventhSense',
+#
+# The Shoddy - /Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Fakobs/Balance/Balance_SG_JAK_Fakobs
+#   Literally does no damage, just a "joke" gun for a DLC3 mission.
 #
 # Marshal - /Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Sheriff/Balance/Balance_PS_JAK_Sheriff
 #   It's just a green Jakobs pistol.  I haven't gone through DLC3 yet, but I assume that it's just
@@ -565,8 +569,6 @@ pools = [
                 ('/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Brightside/Balance/Balance_SG_TED_Brightside', 1),
                 # Dakota
                 ('/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Dakota/Balance/Balance_SG_JAK_Dakota', 1*addition_scale),
-                # The Shoddy (I suspect it has no redeeming qualities; need to test it out though)
-                ('/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Fakobs/Balance/Balance_SG_JAK_Fakobs', 0.1*addition_scale),
                 # Frequency
                 ('/Game/PatchDLC/Geranium/Gear/Weapon/_Unique/Frequency/Balance/Balance_SG_MAL_Frequency', 1),
                 # Spade

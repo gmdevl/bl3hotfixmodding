@@ -19,47 +19,19 @@
 # along with this Borderlands 3 Hotfix Mod.  If not, see
 # <https://www.gnu.org/licenses/>.
 
-from bl3hotfixmod.bl3hotfixmod import Mod
+from bl3hotfixmod.bl3hotfixmod import Mod, BVCF
 
-mod = Mod('cheaper_slots.txt',
-        'Cheaper Slot Machines',
+mod = Mod('silent_sellout.txt',
+        'Silent Sellout',
         'Apocalyptech',
         [
+            "Removes the Tyreen-themed voice module from the Sellout",
         ],
         lic=Mod.CC_BY_SA_40,
         )
-
-levels_money = [
-        'Sanctuary3_P',
-        'AtlasHQ_P',
-        'OrbitalPlatform_P',
-        'Mansion_P',
-        'CasinoIntro_P',
-        'Core_P',
-        'Bar_P',
-        'Town_P',
-        ]
-
-levels_eridium = [
-        'Sanctuary3_P',
-        'Bar_P',
-        ]
-
-mod.comment('Money-based machines')
-for level in levels_money:
-    mod.reg_hotfix(Mod.LEVEL, level,
-            '/Game/UI/InteractionPrompt/UIData_PlaySlots',
-            'Cost.BaseValueScale',
-            0.2)
-mod.newline()
-
-mod.comment('Eridium-based machines')
-for level in levels_eridium:
-    mod.reg_hotfix(Mod.LEVEL, level,
-            '/Game/UI/InteractionPrompt/UIData_PlaySlotsEridium',
-            'Cost.BaseValueScale',
-            0.2)
-mod.newline()
+mod.reg_hotfix(Mod.PATCH, '',
+        '/Game/Gear/Weapons/Pistols/Maliwan/_Shared/_Design/_Unique/SuckerPunch/WeaponCustom/BPWeap_PS_MAL_SuckerPunch.BPWeap_PS_MAL_SuckerPunch_C:OakDialog_GEN_VARIABLE',
+        'DialogScripts',
+        '()')
 
 mod.close()
-

@@ -21,45 +21,21 @@
 
 from bl3hotfixmod.bl3hotfixmod import Mod
 
-mod = Mod('cheaper_slots.txt',
-        'Cheaper Slot Machines',
+mod = Mod('hatsoff_weapon.txt',
+        'Hats Off Weapon',
         'Apocalyptech',
         [
+            "Just a joke mod.  During the intro to Bounty of Blood, a character named",
+            "Old Pete starts making another character dance by shooting at his feet.",
+            "This changes his Jakobs gun into the Backburner, instead, for a laugh.",
         ],
         lic=Mod.CC_BY_SA_40,
         )
 
-levels_money = [
-        'Sanctuary3_P',
-        'AtlasHQ_P',
-        'OrbitalPlatform_P',
-        'Mansion_P',
-        'CasinoIntro_P',
-        'Core_P',
-        'Bar_P',
-        'Town_P',
-        ]
-
-levels_eridium = [
-        'Sanctuary3_P',
-        'Bar_P',
-        ]
-
-mod.comment('Money-based machines')
-for level in levels_money:
-    mod.reg_hotfix(Mod.LEVEL, level,
-            '/Game/UI/InteractionPrompt/UIData_PlaySlots',
-            'Cost.BaseValueScale',
-            0.2)
-mod.newline()
-
-mod.comment('Eridium-based machines')
-for level in levels_eridium:
-    mod.reg_hotfix(Mod.LEVEL, level,
-            '/Game/UI/InteractionPrompt/UIData_PlaySlotsEridium',
-            'Cost.BaseValueScale',
-            0.2)
-mod.newline()
+# Had a heck of a time finding the attribute to use here
+mod.reg_hotfix(Mod.CHAR, 'BPChar_Hatsoff',
+        '/Geranium/NonPlayerCharacters/GerNPC/HatsOff/_Design/Character/BPChar_Hatsoff.Default__BPChar_Hatsoff_C',
+        'DefaultBalanceWeaponData',
+        Mod.get_full_cond('/Game/PatchDLC/Mayhem2/Gear/Weapon/_Shared/_Unique/Backburner/Balance/Balance_HW_VLA_ETech_BackBurner', 'InventoryBalanceData'))
 
 mod.close()
-
